@@ -35,3 +35,24 @@ let collection = [];
     localStorage.setItem('books', JSON.stringify(collection));
   });
 }
+// get all the data from the local storage and add it to the book list;
+const booksOnLocalStorage = JSON.parse(localStorage.getItem('books'));
+if (booksOnLocalStorage !== null) {
+  collection = [...booksOnLocalStorage];
+  collection.forEach((book) => {
+    addToBookList(book.title, book.author, book.bookId);
+  });
+}
+
+const addBook = () => {
+  const titleReceived = document.getElementById('title').value;
+  const authorReceived = document.getElementById('author').value;
+  const book = {
+    title: titleReceived,
+    author: authorReceived,
+    bookId: collection.length,
+  };
+  collection.push(book);
+  // update the local storage
+  localStorage.setItem('books', JSON.stringify(collection));
+};
