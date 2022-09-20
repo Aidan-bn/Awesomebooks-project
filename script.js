@@ -56,3 +56,11 @@ const addBook = () => {
   // update the local storage
   localStorage.setItem('books', JSON.stringify(collection));
 };
+
+// event listener for the form submit
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  addBook();
+  const book = collection[collection.length - 1];
+  addToBookList(book.title, book.author, book.bookId);
+});
